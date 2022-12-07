@@ -151,3 +151,35 @@ def data_entry_interface():
         else:
             print("invalid input please re-enter")
             continue
+
+
+def add_user(x):
+    '''
+    requires: x = member list
+    pryoussef
+dds the data to the csv file
+    '''
+    while True:
+        name = input("Please enter the username: ")
+        password = input("Please enter the password: ")
+        authentic = input("Please enter the authentication level (admin,data_entry_users,end_user): ")
+        if not (authentic == 'admin' or authentic == 'data_entry_users' or authentic == 'end_user'):
+            print("entered authentication is not valid, please re-enter")
+            continue
+        if (',' in name or ',' in password):
+            print("There cannot be a ',' in the name or password, please re-enter")
+            continue
+        for i in x:
+            if (i.get('member') == name and i.get('member_pass') == password):
+                print("user already found, please re-enter")
+                add_user(x)
+        new_data = {'member':name, 'member_pass':password, 'authentication':authentic}
+        x.append(new_data)
+        print("****Loading****");time.sleep(0.5)
+        with open("member.csv", 'w', newline="") as folder:
+            writeCSV = csv.writer(folder, delimiter=',')
+            for item in x:
+                row = [item['member'], item['member_pass'],item['authentication']]
+                writeCSV.writerow(row)
+            print("User added successfully!\nGoing back to menu");time.sleep(0.5)
+        admin_interface(x)
