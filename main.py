@@ -280,3 +280,13 @@ def browsing_interface():
     condition = input("Enter the search condition: ")
     cur.execute(f"Select * from {table} where {column} = '{condition}' ")
     print_result()
+
+def startup():
+    print("<<<<System Start Up>>>>");time.sleep(1)
+    connect(input("Please enter the root database password: "))
+    if(input("do you want to create/reset the database (y or n): ") == "y"):
+        read_sql('ART_Database.sql')
+        print("Database has been created/reseted successfully");time.sleep(1)
+        
+    else:
+        print("Database wasn't created/reseted");time.sleep(1)
