@@ -118,3 +118,16 @@ def data_entry_users():
         else:
             print("Choice invalid please re-enter");time.sleep(0.5)
             continue
+
+def end_user():
+    '''
+    requires:   name: username
+                password
+                key: to unlock all the privilages
+    Can only lookup information
+    '''
+    while True:
+        browsing_interface() #looks up information
+        sel = input("press 0 to log out or enter to continue: ")
+        if (sel == '0'):
+            main()
