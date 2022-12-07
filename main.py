@@ -252,3 +252,21 @@ def insert_info():
     cur.execute(f"insert into {table} values ({values})")
     cnx.commit()
     print("info inserted")
+
+def up_or_del():
+    sel = input("Select 1 for update or 2 for delete: ")
+    table = input("Select table to change: ")
+    column  = input("Enter column name to search for the record: ")
+    condition = input("Enter the search condition: ")
+    if sel == "1":
+        column1 = input("Select a coulumn to edit: ")
+        value = input("Enter the new value: ")
+        cur.execute(f"update {table} set {column1} = '{value}' where {column} = '{condition}' ")
+        cnx.commit()
+        print("info updated")
+    elif sel == "2":
+        cur.execute(f"delete from {table} where {column} = '{condition}' ")
+        cnx.commit()
+        print("info deleted")
+    else:
+        print("invalid selection")
