@@ -270,3 +270,13 @@ def up_or_del():
         print("info deleted")
     else:
         print("invalid selection")
+
+def browsing_interface():
+    '''
+    promises: gets the information a user is looking for
+    '''
+    table = input("Select a table: ")
+    column  = input("Enter column name to search for the record: ")
+    condition = input("Enter the search condition: ")
+    cur.execute(f"Select * from {table} where {column} = '{condition}' ")
+    print_result()
