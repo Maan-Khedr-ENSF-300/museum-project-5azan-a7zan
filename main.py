@@ -95,3 +95,26 @@ def admin_interface(member_list):
         else:
             print("Choice invalid please re-enter");time.sleep(0.5)
             continue
+
+def data_entry_users():
+    '''
+    requires:   username
+                password
+                key: to unlock all the privilages
+    promises: user can:
+                        add information tuples to the database 
+                        modify existing information in the database
+    '''
+    while True:
+        print("<<<<Menu>>>>\n1- add information\n2- Modify information\n3- log out")
+        num = input("Please choose which option you want: ")
+        print("****Loading****");time.sleep(0.5)
+        if (num == '1'):
+            insert_info() #add information
+        elif (num == '2'):
+            up_or_del() #edit information
+        elif(num == '3'):
+            main()
+        else:
+            print("Choice invalid please re-enter");time.sleep(0.5)
+            continue
