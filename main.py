@@ -26,3 +26,10 @@ def read_sql(filepath):
                 cur.execute(command)
         except:
             print("Command skipped: ", command)
+
+def print_result():
+    col_names=cur.column_names
+    search_result=cur.fetchall()
+    print("Search found ",len(search_result)," Entries:\n")
+    search_result.insert(0, col_names)
+    print(tabulate(search_result))
