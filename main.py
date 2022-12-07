@@ -220,3 +220,28 @@ def edit_user(x):
                 admin_interface(x)
         print("user not found, please re-enter")
         edit_user(x)
+
+
+def freska_block(x):
+    while True:
+
+        name = input("please input username to block: ")
+        for i in x: #checks if the user is registered
+            if (i.get('member') == name):
+                password = i.get('member_pass')
+                k = 0
+                while (k < len(x)): #makes the user into blocked status
+                    if (x[k].get('member') == name ):
+                        x[k]={'member':name, 'member_pass':password,'authentication':'blocked'}
+                        k=k+1
+                    k=k+1
+                print("****Loading****");time.sleep(0.5)
+                with open("member.csv", 'w', newline="") as folder:
+                    writeCSV = csv.writer(folder, delimiter=',')
+                    for item in x:
+                        row = [item['member'], item['member_pass'],item['authentication']]
+                        writeCSV.writerow(row)
+                print("User blocked successfully!\nGoing back to menu");time.sleep(0.5)
+                admin_interface(x)
+        print("user not found, please re-enter")
+        freska_block(x)
