@@ -58,3 +58,40 @@ def identify_user(x,y):
         else:
             continue
     return 0,0
+
+def admin_interface(member_list):
+    '''
+    requires:   username
+                password
+                key: to unlock all the privilages
+    promises:   user can:
+                        Can add,edit,block users.  
+                        Can make changes to databas
+    ''' 
+    while True:
+        print("<<<<Menu>>>>\n1- add user\n2- edit user\n3- block user\n4- change database\n5- MySQL command line\n6- log out\n0- to exit")
+        num = input("Please choose which option you want: ") 
+        print("****Loading****");time.sleep(0.5) #visual effects
+        if (num == '1'): #adds a user
+            add_user(member_list)
+        elif (num == '2'): #edits a user
+            edit_user(member_list)
+        elif (num == '3'): # blocks a user
+            freska_block(member_list)
+        elif (num == '4'): #change database
+            data_entry_interface()
+        elif (num == '5'):
+            command = input('Please enter the MySQL command:')
+            cur.execute(command)
+            if 'select' in command.lower(): 
+                print_result()
+            cnx.commit()
+            print("Command Executed");time.sleep(1)
+
+        elif (num == '6'):
+            main()
+        elif (num == '0'):
+            sys.exit() #forcibaly exits system (this is because all the code is in while loops)
+        else:
+            print("Choice invalid please re-enter");time.sleep(0.5)
+            continue
