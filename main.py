@@ -131,3 +131,23 @@ def end_user():
         sel = input("press 0 to log out or enter to continue: ")
         if (sel == '0'):
             main()
+
+def data_entry_interface():
+    '''
+    used to enter data into the database
+    '''
+    while True:
+        print("<<<<menu>>>\n1- Lookup information\n2- Insert new tuples\n3- Update or delete tuples\n0- Exit program")
+        menu = input("please enter number: ")
+        print("****loading****");time.sleep(0.5)
+        if (menu == '1'):
+            browsing_interface()
+        elif (menu == '2'):
+            insert_info()
+        elif (menu == '3'):
+            up_or_del()
+        elif (menu == '0'):
+            sys.exit()
+        else:
+            print("invalid input please re-enter")
+            continue
