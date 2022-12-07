@@ -3,7 +3,10 @@ USE ARTGALLERY;
 
 /*Showing all tables*/
 /*
-
+Our database was implemented with the use of a few relations such as foreign keys with their corresponding references and primary keys for certain tables. 
+An example of a foreign key is found under the statue table where the ID_NO is a foreign key that is referred to the ID_NO in the art objects. 
+This means that all the ID_NO entities are listed into the art_objects table and a few of the ID_NOs are taken and referred to the statue table 
+while being referred to from the art objects table.
 */
 select *
  From ARTIST;
