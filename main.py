@@ -183,3 +183,40 @@ dds the data to the csv file
                 writeCSV.writerow(row)
             print("User added successfully!\nGoing back to menu");time.sleep(0.5)
         admin_interface(x)
+
+
+def edit_user(x):
+    '''
+    requires: x = member list
+    promises: edits the data of a user in the csv file
+    '''
+    while True: 
+        name = input("please input username you want to edit: ")
+        for i in x: #checks if the user is registered
+            if (i.get('member') == name):
+                new_name = input("Please enter new username: ")
+                new_password = input("Please enter new password: ")
+                new_authentic = input("Please enter new authentication level: ")
+                if not (new_authentic == 'admin' or new_authentic == 'data_entry_users' or new_authentic == 'end_user'):
+                    print("entered authentication is not valid, please re-enter") #checks if the authentication is correct
+                    edit_user(x)
+                if (',' in new_name or ',' in new_password):
+                    print("There cannot be a ',' in the name or password, please re-enter")
+                    edit_user(x)
+                i = 0
+                while (i <= len(x)): #replaces the old user data with the new user data
+                    if (x[i].get('member') == name ):
+                        x[i]={'member':new_name, 'member_pass':new_password,'authentication':new_authentic}
+                        i=i+1
+                    i=i+1
+
+                #line below puts the changes into the csv file
+                with open("member.csv", 'w', newline="") as folder:
+                    writeCSV = csv.writer(folder, delimiter=',')
+                    for item in x:
+                        row = [item['member'], item['member_pass'],item['authentication']]
+                        writeCSV.writerow(row)
+                print("User edited successfully!\nGoing back to menu");time.sleep(0.5)
+                admin_interface(x)
+        print("user not found, please re-enter")
+        edit_user(x)
