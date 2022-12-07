@@ -245,3 +245,10 @@ def freska_block(x):
                 admin_interface(x)
         print("user not found, please re-enter")
         freska_block(x)
+
+def insert_info():
+    table = input("enter the name of the table to insert:")
+    values = input("enter the values seperated by a comma: ")
+    cur.execute(f"insert into {table} values ({values})")
+    cnx.commit()
+    print("info inserted")
