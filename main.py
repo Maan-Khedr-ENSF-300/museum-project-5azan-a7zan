@@ -290,3 +290,29 @@ def startup():
         
     else:
         print("Database wasn't created/reseted");time.sleep(1)
+
+def main():
+    cur.execute("USE ARTGALLERY")
+    while True:
+        username = input("Please enter username (Enter: admin, data_entry or guest): ")
+        password = input("Please enter password (Enter: admin_password, data_entry_password or guest_password): ")
+        code,member_list = identify_user(username, password)
+        if (code == 1):
+            print(f"<<<<Welcome {username}, loading up menu>>>>");time.sleep(0.5)
+            admin_interface(member_list)
+        elif (code == 2):
+            print(f"<<<<Welcome {username}, loading up menu>>>>");time.sleep(0.5)
+            data_entry_users()
+        elif (code == 3):
+            print(f"<<<<Welcome {username}, Which information are you looking for today?>>>>");time.sleep(0.5)
+            end_user()
+        elif (code == 4):
+            print(f"user {username} is blocked exiting program");time.sleep(0.5)
+            sys.exit()
+        else:
+            print("User not found, Please re-enter credentials")
+            continue
+
+if __name__ == '__main__':
+    startup()
+    main()
